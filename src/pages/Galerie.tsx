@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import api, { API_URL } from "../services/api";
+import api from "../services/api";
+import { cloudinaryUrl } from "../utils/cloudinary";
 import Spinner from "../components/Spinner";
 
 interface Media {
@@ -74,7 +75,7 @@ export default function Galerie() {
     }
   }
 
-  const srcDe = (m: Media) => `${API_URL}/uploads/${m.fichier}`;
+  const srcDe = (m: Media) => cloudinaryUrl(m.fichier, m.type);
   const images = medias.filter((m) => m.type === "image");
   const videos = medias.filter((m) => m.type === "video");
 

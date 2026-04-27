@@ -1,7 +1,6 @@
 const express = require("express");
-const fs = require("fs");
-const path = require("path");
 const pool = require("../config/db");
+const cloudinary = require("../config/cloudinary");
 const { authRequired } = require("../middleware/auth");
 const upload = require("../middleware/upload");
 
@@ -115,14 +114,7 @@ router.delete("/:id", authRequired, async (req, res) => {
       return res.status(404).json({ message: "Inscription introuvable" });
 
     if (rows[0].photo) {
-      const photoPath = path.join(
-        __dirname,
-        "..",
-        "..",
-        "uploads",
-        rows[0].photo
-      );
-      if (fs.existsSync(photoPath)) fs.unlinkSync(photoPath);
+      await cloudinary.uploader.destroy(rows[0].photo).catch(() => {});
     }
 
     await pool.query("DELETE FROM membres WHERE id = ?", [req.params.id]);

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import api, { API_URL } from "../services/api";
+import api from "../services/api";
+import { cloudinaryUrl } from "../utils/cloudinary";
 import Spinner from "../components/Spinner";
 
 type Departement = "JAD" | "ASC" | "AHC" | "Enfants et ados";
@@ -109,7 +110,7 @@ export default function Comite() {
                       >
                         {membre.photo ? (
                           <img
-                            src={`${API_URL}/uploads/${membre.photo}`}
+                            src={cloudinaryUrl(membre.photo)}
                             alt={membre.nom}
                             className="w-12 h-12 rounded-full object-cover mb-1.5"
                           />

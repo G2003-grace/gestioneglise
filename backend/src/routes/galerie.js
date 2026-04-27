@@ -1,7 +1,6 @@
 const express = require("express");
-const fs = require("fs");
-const path = require("path");
 const pool = require("../config/db");
+const cloudinary = require("../config/cloudinary");
 const { authRequired } = require("../middleware/auth");
 const upload = require("../middleware/uploadMedia");
 
@@ -41,8 +40,11 @@ router.post("/", upload.single("fichier"), async (req, res) => {
     res.status(201).json(rows[0]);
   } catch (err) {
     console.error(err);
-    const filePath = path.join(__dirname, "..", "..", "uploads", req.file.filename);
-    if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
+    await cloudinary.uploader
+      .destroy(req.file.filename, {
+        resource_type: type === "video" ? "video" : "image",
+      })
+      .catch(() => {});
     res.status(500).json({ message: "Erreur serveur" });
   }
 });
@@ -50,20 +52,17 @@ router.post("/", upload.single("fichier"), async (req, res) => {
 router.delete("/:id", async (req, res) => {
   try {
     const [rows] = await pool.query(
-      "SELECT fichier FROM galerie WHERE id = ?",
+      "SELECT fichier, type FROM galerie WHERE id = ?",
       [req.params.id]
     );
     if (rows.length === 0)
       return res.status(404).json({ message: "Media introuvable" });
 
-    const filePath = path.join(
-      __dirname,
-      "..",
-      "..",
-      "uploads",
-      rows[0].fichier
-    );
-    if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
+    await cloudinary.uploader
+      .destroy(rows[0].fichier, {
+        resource_type: rows[0].type === "video" ? "video" : "image",
+      })
+      .catch(() => {});
 
     await pool.query("DELETE FROM galerie WHERE id = ?", [req.params.id]);
     res.json({ message: "Media supprime" });

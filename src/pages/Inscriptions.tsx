@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import api, { API_URL } from "../services/api";
+import api from "../services/api";
+import { cloudinaryUrl } from "../utils/cloudinary";
 import Spinner from "../components/Spinner";
 
 interface Inscription {
@@ -95,7 +96,7 @@ export default function Inscriptions() {
               <div className="flex gap-3">
                 {i.photo ? (
                   <img
-                    src={`${API_URL}/uploads/${i.photo}`}
+                    src={cloudinaryUrl(i.photo)}
                     alt={i.nom}
                     className="w-16 h-16 rounded-lg object-cover shrink-0"
                   />

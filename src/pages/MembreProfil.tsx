@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import api, { API_URL } from "../services/api";
+import api from "../services/api";
+import { cloudinaryUrl } from "../utils/cloudinary";
 import { useAuth } from "../context/AuthContext";
 import Spinner from "../components/Spinner";
 
@@ -103,7 +104,7 @@ export default function MembreProfil() {
           <div className="shrink-0">
             {membre.photo ? (
               <img
-                src={`${API_URL}/uploads/${membre.photo}`}
+                src={cloudinaryUrl(membre.photo)}
                 alt={membre.nom}
                 className="w-28 h-28 rounded-lg object-cover"
               />
