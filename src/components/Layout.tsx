@@ -41,7 +41,14 @@ export default function Layout() {
     <div className="min-h-screen w-full flex flex-col bg-base-200 text-sm">
       <header className="bg-primary text-primary-content px-4 py-2 flex items-center justify-between shadow-sm">
         <div className="flex items-center gap-4">
-          <Link to="/membres" className="font-bold tracking-wide">
+          <Link to="/membres" className="flex items-center gap-2.5 font-bold tracking-wide">
+            <span className="bg-white rounded-md p-1 shadow-sm">
+              <img
+                src="/logo-ad.jpeg"
+                alt="Logo AD"
+                className="h-7 w-7 object-contain"
+              />
+            </span>
             AD AKASSATO
           </Link>
           <nav className="flex gap-1">

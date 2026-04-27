@@ -9,6 +9,12 @@ export default function Accueil() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.15),transparent_50%)]" />
 
         <div className="relative max-w-5xl mx-auto px-6 py-20 sm:py-28 text-center text-white">
+          <img
+            src="/logo-ad.jpeg"
+            alt="Logo AD AKASSATO"
+            className="h-28 sm:h-36 w-auto mx-auto mb-6 drop-shadow-2xl animate-fade-in"
+          />
+
           <div className="inline-block px-3 py-1 rounded-full bg-white/10 border border-white/20 text-xs uppercase tracking-widest mb-6 animate-fade-in">
             Assemblees de Dieu
           </div>
@@ -223,7 +229,14 @@ export default function Accueil() {
 
       {/* FOOTER */}
       <footer className="bg-base-300 text-center py-5 text-xs opacity-70">
-        <p className="font-semibold">AD AKASSATO &middot; Toujours en avant</p>
+        <div className="flex items-center justify-center gap-2">
+          <img
+            src="/logo-ad.jpeg"
+            alt="Logo AD"
+            className="h-6 w-6 object-contain"
+          />
+          <p className="font-semibold">AD AKASSATO &middot; Toujours en avant</p>
+        </div>
         <p className="opacity-70 mt-1">
           &copy; {new Date().getFullYear()} Tous droits reserves &middot;{" "}
           <Link to="/login" className="hover:underline">

@@ -91,7 +91,12 @@ export default function Inscription() {
   return (
     <div className="min-h-screen bg-base-200 py-6 px-4">
       <div className="max-w-xl mx-auto">
-        <div className="text-center mb-5">
+        <div className="text-center mb-5 flex flex-col items-center">
+          <img
+            src="/logo-ad.jpeg"
+            alt="Logo AD"
+            className="h-28 w-28 object-contain mb-3"
+          />
           <h1 className="text-2xl font-bold">AD AKASSATO</h1>
           <p className="text-xs opacity-60">Inscription d'un nouveau membre</p>
         </div>

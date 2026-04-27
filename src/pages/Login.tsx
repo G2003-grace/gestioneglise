@@ -27,7 +27,12 @@ export default function Login() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-base-200 p-4">
       <div className="w-full max-w-sm bg-base-100 rounded-lg border border-base-300 p-6 animate-pop-in">
-        <div className="text-center mb-5">
+        <div className="text-center mb-5 flex flex-col items-center">
+          <img
+            src="/logo-ad.jpeg"
+            alt="Logo AD"
+            className="h-28 w-28 object-contain mb-3"
+          />
           <h1 className="text-xl font-bold">AD AKASSATO</h1>
           <p className="text-xs opacity-60">Connexion administrateur</p>
         </div>
